@@ -1388,3 +1388,176 @@ Interpretation:
   points in the current post-reset five-hour window
 - pre-reset five-hour observations remain a separate quota-window segment
 - the implementation remains uncommitted pending direct human diff review
+
+## Tiny Capacity Lab Muse adapter: first implementation pass
+
+Task:
+Implement the second bounded Experiment 0001 vertical slice by normalizing
+structured Muse Code quota responses into the shared Capacity Observation v1
+Python models.
+
+Tool:
+Antigravity
+
+Model:
+Gemini Medium
+
+Status at checkpoint:
+- first Muse adapter implementation completed
+- direct human review pending
+- no files staged, committed, or pushed
+
+Capacity before Muse implementation:
+- Gemini weekly remaining: 85.68367958068848%
+- Gemini five-hour remaining: 96.69291377067566%
+
+Capacity after Muse implementation:
+- Gemini weekly remaining: 85.42129993438721%
+- Gemini five-hour remaining: 94.77461576461792%
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Observed Muse implementation movement:
+- Gemini weekly consumed: 0.26237964630127 percentage points
+- Gemini five-hour consumed: 1.91829800605774 percentage points
+
+Current post-reset five-hour segment:
+- segment starting remaining: 100%
+- current remaining: 94.77461576461792%
+- total consumed in this window so far: 5.22538423538208 percentage points
+- Antigravity adapter first implementation pass: 1.72029733657837 percentage points
+- Antigravity adapter correction pass: 1.58678889274597 percentage points
+- Muse adapter first implementation pass: 1.91829800605774 percentage points
+
+Reset timestamps:
+- Gemini weekly: 2026-11-24T23:41:47Z
+- Gemini five-hour: 2026-11-18T09:41:47Z
+- Claude/GPT weekly: 2026-11-25T05:37:39Z
+- Claude/GPT five-hour: 2026-11-18T10:37:39Z
+
+Measurement:
+- command: `agy -p /usage --output-format json`
+- duration_seconds: 0
+- num_turns: 0
+- input_tokens: 0
+- output_tokens: 0
+- thinking_tokens: 0
+- cache_read_tokens: 0
+- total_tokens: 0
+
+Engineering outcome:
+- added Muse-specific adapter and error hierarchy
+- represented successful `allowance: null` as `no_observation`
+- normalized five-hour and weekly Muse allowance windows
+- preserved provider-reported used percentages without rounding
+- derived remaining percentages without replacing provider evidence
+- converted provider epoch milliseconds to timezone-aware UTC timestamps
+- preserved provider observation time separately from collection time
+- added immutable tier and source metadata
+- added deterministic synthetic Muse fixtures
+- added 44 Muse tests
+- complete suite: 88 tests passed
+- Ruff passed
+- `git diff --check` passed
+- ignored local data remains untracked
+- nothing is staged, committed, or pushed
+
+Interpretation:
+- the first Muse implementation pass consumed approximately 0.26 weekly
+  percentage points and 1.92 five-hour percentage points
+- the complete adapter work in the current post-reset five-hour window has
+  consumed approximately 5.23 percentage points
+- the shared-contract generalization and Muse implementation remain
+  uncommitted pending direct human review
+
+### Muse adapter and shared-contract correction pass
+
+Task:
+Apply the human-reviewed timestamp, provenance, invariant, overflow-handling,
+and metadata corrections to the Muse adapter and shared Capacity Observation
+models.
+
+Tool:
+Antigravity
+
+Model:
+Gemini Medium
+
+Capacity before correction pass:
+- Gemini weekly remaining: 85.42129993438721%
+- Gemini five-hour remaining: 94.77461576461792%
+
+Capacity after correction pass:
+- Gemini weekly remaining: 85.12889146804810%
+- Gemini five-hour remaining: 93.53915452957153%
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Observed correction-pass movement:
+- Gemini weekly consumed: 0.29240846633911 percentage points
+- Gemini five-hour consumed: 1.23546123504639 percentage points
+
+Complete Muse adapter movement:
+- first implementation weekly consumed: 0.26237964630127 percentage points
+- correction pass weekly consumed: 0.29240846633911 percentage points
+- total weekly consumed: 0.55478811264038 percentage points
+- first implementation five-hour consumed: 1.91829800605774 percentage points
+- correction pass five-hour consumed: 1.23546123504639 percentage points
+- total five-hour consumed: 3.15375924110413 percentage points
+
+Current post-reset five-hour segment:
+- segment starting remaining: 100%
+- current remaining: 93.53915452957153%
+- total consumed in this window so far: 6.46084547042847 percentage points
+- Antigravity adapter first implementation: 1.72029733657837 percentage points
+- Antigravity adapter correction: 1.58678889274597 percentage points
+- Muse adapter first implementation: 1.91829800605774 percentage points
+- Muse and shared-contract correction: 1.23546123504639 percentage points
+
+Reset timestamps:
+- Gemini weekly: 2026-11-24T23:41:47Z
+- Gemini five-hour: 2026-11-18T09:41:47Z
+- Claude/GPT weekly: 2026-11-25T05:47:01Z
+- Claude/GPT five-hour: 2026-11-18T10:47:01Z
+
+Measurement:
+- command: `agy -p /usage --output-format json`
+- duration_seconds: 0
+- num_turns: 0
+- input_tokens: 0
+- output_tokens: 0
+- thinking_tokens: 0
+- cache_read_tokens: 0
+- total_tokens: 0
+
+Corrections completed:
+- normalized reset timestamps are now timezone-aware datetimes
+- Antigravity reset timestamps are parsed into UTC while preserving the exact
+  provider-reported strings
+- malformed, empty, or timezone-naive Antigravity reset timestamps fail closed
+- Muse epoch conversion failures now produce field-specific Muse errors
+- excessively large epoch values are tested
+- ProviderWindowValue now enforces mutually consistent provenance
+- normalized observation timestamps enforce timezone awareness
+- Muse tier and source require non-empty strings when present
+- metadata is defensively copied and exposed read-only
+- direct shared-contract invariant tests were added
+
+Validation:
+- Antigravity adapter tests: 45 passed
+- Muse adapter tests: 58 passed
+- shared observation-contract tests: 5 passed
+- complete suite: 108 passed
+- Ruff passed
+- `git diff --check` passed
+- live provider data and `.venv` remain ignored
+- nothing is staged, committed, or pushed
+
+Interpretation:
+- the focused correction pass consumed approximately 0.29 weekly percentage
+  points and 1.24 five-hour percentage points
+- the complete Muse adapter work consumed approximately 0.55 weekly percentage
+  points and 3.15 five-hour percentage points
+- the complete adapter work in the current post-reset five-hour window has
+  consumed approximately 6.46 percentage points
+- the implementation remains uncommitted pending final direct verification

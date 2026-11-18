@@ -55,7 +55,7 @@ def test_valid_response_multiple_dynamically_discovered_groups_and_windows():
     assert w1_weekly.id == "weekly"
     assert w1_weekly.remaining_percent == 75.0
     assert w1_weekly.used_percent == 25.0
-    assert w1_weekly.resets_at == "2099-01-08T00:00:00Z"
+    assert w1_weekly.resets_at == datetime(2099, 1, 8, 0, 0, 0, tzinfo=timezone.utc)
     assert w1_weekly.provider_value is not None
     assert w1_weekly.provider_value.remaining_fraction == 0.75
     assert w1_weekly.provider_value.reset_time == "2099-01-08T00:00:00Z"
@@ -66,7 +66,7 @@ def test_valid_response_multiple_dynamically_discovered_groups_and_windows():
     assert w1_5h.id == "five_hour"
     assert w1_5h.remaining_percent == 40.0
     assert w1_5h.used_percent == 60.0
-    assert w1_5h.resets_at == "2099-01-01T05:00:00Z"
+    assert w1_5h.resets_at == datetime(2099, 1, 1, 5, 0, 0, tzinfo=timezone.utc)
     assert w1_5h.provider_value is not None
     assert w1_5h.provider_value.remaining_fraction == 0.40
     assert w1_5h.provider_value.reset_time == "2099-01-01T05:00:00Z"
@@ -85,7 +85,7 @@ def test_valid_response_multiple_dynamically_discovered_groups_and_windows():
     assert w2_weekly.id == "weekly"
     assert w2_weekly.remaining_percent == 90.0
     assert w2_weekly.used_percent == 10.0
-    assert w2_weekly.resets_at == "2099-01-08T00:00:00Z"
+    assert w2_weekly.resets_at == datetime(2099, 1, 8, 0, 0, 0, tzinfo=timezone.utc)
     assert w2_weekly.provider_value is not None
     assert w2_weekly.provider_value.remaining_fraction == 0.90
 
@@ -408,6 +408,49 @@ def test_invalid_remaining_fraction(fraction_value, err_match):
         parse_antigravity_response(payload)
 
 
+def test_invalid_reset_time():
+    base_payload = {
+        "status": "SUCCESS",
+        "command": {
+            "name": "usage",
+            "data": {
+                "groups": [
+                    {
+                        "name": "Synthetic Group",
+                        "buckets": [
+                            {
+                                "id": "synth-bucket",
+                                "window": "weekly",
+                                "remaining_fraction": 0.5,
+                                "reset_time": "",
+                            }
+                        ],
+                    }
+                ]
+            },
+        },
+    }
+
+    # Empty string
+    with pytest.raises(AntigravitySchemaError, match="must be a non-empty string or null"):
+        parse_antigravity_response(base_payload)
+
+    # Malformed ISO
+    base_payload["command"]["data"]["groups"][0]["buckets"][0]["reset_time"] = "not-a-datetime"
+    with pytest.raises(AntigravityValueError, match="Malformed reset_time ISO 8601 string"):
+        parse_antigravity_response(base_payload)
+
+    # Naive ISO
+    base_payload["command"]["data"]["groups"][0]["buckets"][0]["reset_time"] = "2099-01-08T00:00:00"
+    with pytest.raises(AntigravityValueError, match="must be timezone-aware, got naive"):
+        parse_antigravity_response(base_payload)
+
+    # Non-string
+    base_payload["command"]["data"]["groups"][0]["buckets"][0]["reset_time"] = 123456
+    with pytest.raises(AntigravitySchemaError, match="must be a non-empty string or null"):
+        parse_antigravity_response(base_payload)
+
+
 def test_collected_at_timezone_validation():
     data = load_fixture_dict("antigravity_empty_groups.json")
 
@@ -451,7 +494,7 @@ def test_immutability_and_no_nested_mutable_state():
     assert isinstance(obs.groups[0].windows, tuple)
 
     # Ensure no mutable mapping attribute is exposed
-    assert not hasattr(obs, "metadata")
+    assert obs.metadata is None
 
 
 def test_does_not_parse_or_require_response_text():
