@@ -248,11 +248,26 @@ def parse_antigravity_response(
             used_percent = 100.0 - remaining_percent
 
             raw_reset_time = raw_bucket.get("reset_time")
-            if raw_reset_time is not None and not isinstance(raw_reset_time, str):
-                raise AntigravitySchemaError(
-                    "Bucket 'reset_time' must be a string or null, "
-                    f"got {type(raw_reset_time).__name__}"
-                )
+            norm_resets_at: datetime | None = None
+            if raw_reset_time is not None:
+                if not isinstance(raw_reset_time, str) or not raw_reset_time.strip():
+                    raise AntigravitySchemaError(
+                        "Bucket 'reset_time' must be a non-empty string or null"
+                    )
+                try:
+                    parsed_reset = datetime.fromisoformat(raw_reset_time)
+                except ValueError as exc:
+                    raise AntigravityValueError(
+                        f"Malformed reset_time ISO 8601 string: {raw_reset_time!r}"
+                    ) from exc
+                if (
+                    parsed_reset.tzinfo is None
+                    or parsed_reset.tzinfo.utcoffset(parsed_reset) is None
+                ):
+                    raise AntigravityValueError(
+                        f"reset_time must be timezone-aware, got naive: {raw_reset_time!r}"
+                    )
+                norm_resets_at = parsed_reset.astimezone(timezone.utc)
 
             raw_id = raw_bucket.get("id")
             if raw_id is not None and (not isinstance(raw_id, str) or not raw_id.strip()):
@@ -272,7 +287,7 @@ def parse_antigravity_response(
                     id=norm_window_id,
                     used_percent=used_percent,
                     remaining_percent=remaining_percent,
-                    resets_at=raw_reset_time,
+                    resets_at=norm_resets_at,
                     provider_value=provider_value,
                 )
             )

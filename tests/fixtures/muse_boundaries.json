@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "allowance": {
+    "tier": "Synthetic Tier",
+    "window": {
+      "usedPercent": 0,
+      "resetsAtMs": 2000018000000
+    },
+    "weekly": {
+      "usedPercent": 100,
+      "resetsAtMs": 2000604800000
+    },
+    "asOfMs": 2000000000000,
+    "source": "synthetic_source"
+  }
+}
