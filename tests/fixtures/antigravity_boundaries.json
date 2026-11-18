@@ -1,0 +1,27 @@
+{
+  "status": "SUCCESS",
+  "command": {
+    "name": "usage",
+    "data": {
+      "groups": [
+        {
+          "name": "Synthetic Boundary Group",
+          "buckets": [
+            {
+              "id": "bound-zero",
+              "window": "weekly",
+              "remaining_fraction": 0.0,
+              "reset_time": "2099-01-08T00:00:00Z"
+            },
+            {
+              "id": "bound-one",
+              "window": "5h",
+              "remaining_fraction": 1.0,
+              "reset_time": "2099-01-01T05:00:00Z"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

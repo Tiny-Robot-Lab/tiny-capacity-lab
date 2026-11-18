@@ -1232,3 +1232,159 @@ Engineering outcome:
 - no staging, commit, or push
 
 
+
+## Tiny Capacity Lab Antigravity adapter: first implementation pass
+
+Task:
+Implement the first bounded Experiment 0001 Antigravity normalization adapter,
+immutable observation types, deterministic fixtures, and tests.
+
+Tool:
+Antigravity
+
+Model:
+Gemini Medium
+
+Status at checkpoint:
+- first implementation prompt completed
+- direct human review completed
+- correction prompt prepared but not yet run
+- no files staged, committed, or pushed
+
+Engineering outcome:
+- Python 3.12+ package scaffold created
+- project-specific AGENTS.md created
+- immutable normalized observation contracts created
+- Antigravity structured-response parser created
+- deterministic synthetic fixtures created
+- 37 tests passed
+- Ruff passed
+- whitespace validation passed
+- live provider observation remains ignored
+
+Human-review findings before correction:
+- group identity derivation must not infer authority from bucket prefixes
+- normalized percentages must retain full arithmetic precision
+- parser should have one unsuccessful-response behavior
+- collection timestamps require stronger semantics
+- undocumented provider observation timestamps must not be inferred
+- unknown window identities must not be silently rewritten
+- command.name must be validated
+- frozen models must not expose mutable nested state
+- fixtures should contain only fields needed by deterministic tests
+
+Quota-window boundary:
+- the Gemini five-hour quota reset between the preceding observation and this
+  checkpoint
+- this checkpoint begins a new five-hour quota-window segment
+- pre-reset and post-reset consumption must remain separate
+- any sum across reset segments is only an accumulated workload indicator, not
+  utilization of one continuous five-hour window
+
+Observation after first implementation prompt and before correction prompt:
+- Gemini weekly remaining: 86.53494715690613%
+- Gemini weekly used: 13.46505284309387%
+- Gemini five-hour remaining: 98.27970266342163%
+- Gemini five-hour used in this new window: 1.72029733657837%
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Reset timestamps:
+- Gemini weekly: 2026-11-24T23:41:47Z
+- Gemini five-hour: 2026-11-18T09:41:47Z
+- Claude/GPT weekly: 2026-11-25T05:12:59Z
+- Claude/GPT five-hour: 2026-11-18T10:12:59Z
+
+Measurement:
+- command: `agy -p /usage --output-format json`
+- duration_seconds: 0
+- num_turns: 0
+- input_tokens: 0
+- output_tokens: 0
+- thinking_tokens: 0
+- cache_read_tokens: 0
+- total_tokens: 0
+
+Interpretation:
+- this checkpoint measures the first implementation prompt only
+- it is the before-reading for the pending focused correction pass
+- final adapter quality, test count, and total capacity movement remain pending
+
+### Antigravity adapter focused correction pass
+
+Task:
+Apply the human-reviewed provenance, precision, timestamp, validation,
+immutability, and error-contract corrections to the first Experiment 0001
+Antigravity adapter implementation.
+
+Tool:
+Antigravity
+
+Model:
+Gemini Medium
+
+Capacity before correction pass:
+- Gemini weekly remaining: 86.53494715690613%
+- Gemini five-hour remaining: 98.27970266342163%
+
+Capacity after correction pass:
+- Gemini weekly remaining: 85.68367958068848%
+- Gemini five-hour remaining: 96.69291377067566%
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Observed correction-pass movement:
+- Gemini weekly consumed: 0.85126757621765 percentage points
+- Gemini five-hour consumed: 1.58678889274597 percentage points
+
+Current post-reset five-hour segment:
+- segment starting remaining: 100%
+- current remaining: 96.69291377067566%
+- total consumed in this window so far: 3.30708622932434 percentage points
+- first implementation pass consumed: 1.72029733657837 percentage points
+- focused correction pass consumed: 1.58678889274597 percentage points
+
+Reset timestamps:
+- Gemini weekly: 2026-11-24T23:41:47Z
+- Gemini five-hour: 2026-11-18T09:41:47Z
+- Claude/GPT weekly: 2026-11-25T05:22:24Z
+- Claude/GPT five-hour: 2026-11-18T10:22:24Z
+
+Measurement:
+- command: `agy -p /usage --output-format json`
+- duration_seconds: 0
+- num_turns: 0
+- input_tokens: 0
+- output_tokens: 0
+- thinking tokens: 0
+- cache_read_tokens: 0
+- total_tokens: 0
+
+Corrections completed:
+- removed bucket-prefix inference for group identity
+- distinguished provider-reported group IDs from IDs derived from group names
+- removed normalization-time percentage rounding
+- retained full arithmetic precision and provider-reported remaining fractions
+- selected one unsuccessful-provider-response behavior
+- made collection timestamps timezone-aware
+- removed undocumented provider-observation timestamp extraction
+- preserved unknown provider window identifiers without silent rewriting
+- required the observed `usage` command identity
+- removed mutable metadata from the first normalized contract
+- minimized the deterministic fixture
+
+Validation:
+- 44 tests passed in 0.05 seconds
+- Ruff passed
+- `git diff --check` passed
+- live provider data remains ignored
+- `.venv` remains ignored
+- nothing is staged, committed, or pushed
+
+Interpretation:
+- the correction pass consumed approximately 0.85 weekly percentage points
+  and 1.59 five-hour percentage points
+- the complete adapter session has consumed approximately 3.31 percentage
+  points in the current post-reset five-hour window
+- pre-reset five-hour observations remain a separate quota-window segment
+- the implementation remains uncommitted pending direct human diff review
