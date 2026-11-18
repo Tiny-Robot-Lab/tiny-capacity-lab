@@ -1,0 +1,56 @@
+{
+  "status": "SUCCESS",
+  "response": "Synthetic human response that must be ignored by adapter",
+  "duration_seconds": 1,
+  "num_turns": 1,
+  "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "thinking_tokens": 0,
+    "cache_read_tokens": 0,
+    "total_tokens": 0
+  },
+  "command": {
+    "name": "usage",
+    "data": {
+      "description": "Synthetic quota usage description",
+      "groups": [
+        {
+          "id": "explicit-alpha",
+          "name": "Synthetic Alpha Models",
+          "description": "Synthetic model group A",
+          "buckets": [
+            {
+              "id": "synth-alpha-weekly",
+              "name": "Weekly Limit Remaining",
+              "description": "Synthetic weekly quota window",
+              "window": "weekly",
+              "remaining_fraction": 0.75,
+              "reset_time": "2099-01-08T00:00:00Z"
+            },
+            {
+              "id": "synth-alpha-5h",
+              "name": "Five Hour Limit Remaining",
+              "window": "5h",
+              "remaining_fraction": 0.40,
+              "reset_time": "2099-01-01T05:00:00Z"
+            }
+          ]
+        },
+        {
+          "name": "Synthetic Beta Models",
+          "description": "Synthetic model group B",
+          "buckets": [
+            {
+              "id": "synth-beta-weekly",
+              "name": "Weekly Limit Remaining",
+              "window": "weekly",
+              "remaining_fraction": 0.90,
+              "reset_time": "2099-01-08T00:00:00Z"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

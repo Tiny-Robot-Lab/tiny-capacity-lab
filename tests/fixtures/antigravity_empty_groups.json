@@ -1,0 +1,10 @@
+{
+  "status": "SUCCESS",
+  "command": {
+    "name": "usage",
+    "data": {
+      "description": "Synthetic empty groups response",
+      "groups": []
+    }
+  }
+}
