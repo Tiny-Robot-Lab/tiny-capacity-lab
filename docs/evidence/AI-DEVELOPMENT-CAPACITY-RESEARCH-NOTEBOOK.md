@@ -459,7 +459,6 @@ Outcome:
 - validation passed
 
 
-
 ### Antigravity capacity observation after Issue #219
 
 Task:
@@ -524,7 +523,6 @@ Interpretation:
 - No intermediate PC checkpoint was collected, so individual AG passes cannot
   be cost-attributed separately.
 - Claude and GPT quota remained unused.
-
 
 
 #220 Phase 1 starting checkpoint
@@ -1232,7 +1230,6 @@ Engineering outcome:
 - no staging, commit, or push
 
 
-
 ## Tiny Capacity Lab Antigravity adapter: first implementation pass
 
 Task:
@@ -1561,3 +1558,492 @@ Interpretation:
 - the complete adapter work in the current post-reset five-hour window has
   consumed approximately 6.46 percentage points
 - the implementation remains uncommitted pending final direct verification
+
+
+## Capacity checkpoint: LANRoster / Tiny Agent Lab work planning
+
+Collected from provider CLIs and Fusion UI before starting IDE or coding-agent work.
+
+### Antigravity
+
+Source:
+- `agy -p /usage --output-format json`
+- Command consumed 0 model tokens and 0 turns.
+
+Gemini Models:
+- Weekly remaining: 85.1978063583374%
+- Weekly reset: 2026-11-24T23:41:47Z
+- Five-hour remaining: 100%
+- Five-hour reset: 2026-11-19T09:52:59Z
+- Observed model group description: Gemini 3.8 Flash
+
+Claude and GPT models:
+- Weekly remaining: 100%
+- Weekly reset: 2026-11-26T04:52:59Z
+- Five-hour remaining: 100%
+- Five-hour reset: 2026-11-19T09:52:59Z
+- Observed model group description: Claude Sonnet 4.6, Claude Opus 4.6, GPT-OSS 120B
+
+### Muse Code
+
+Source:
+- `muse usage --json`
+
+Metadata:
+- Tier: Muse Code High Usage
+- Source: mint
+- Provider observation: 2026-11-19T04:53:00.432Z
+
+Current window:
+- Used: 0%
+- Remaining: 100%
+- Reset: 2026-11-19T09:52:48Z
+
+Weekly:
+- Used: 7%
+- Remaining: 93%
+- Reset: 2026-11-23T00:00:00Z
+
+### Copilot Fusion
+
+Source:
+- Copilot Pro usage UI screenshot
+
+Observed:
+- Account credits used: 207.5 / 1,500
+- Account credits remaining: 1,292.5
+- Reset shown: Nov 30 at 4:00 PM
+- Inline Suggestions: Enabled
+- Codebase Semantic Index: Ready
+- Session Sync: Enabled
+
+No task-specific Fusion routing or model was observed at this checkpoint.
+
+### Planned allocation
+
+1. Muse: LANRoster issue #10 documentation alignment
+2. Muse, if #10 succeeds: LANRoster issue #11 packaging and CI
+3. Antigravity Gemini High: Tiny Agent Lab issue #220
+4. Claude/GPT AG capacity reserved for independent review when justified
+5. Fusion reserved for a task that benefits from routing or cross-project synthesis
+
+Guiding rule:
+Use expiring capacity on valuable work, not artificial consumption.
+
+
+## Task observation: LANRoster issue #10 documentation alignment
+
+Task:
+- Align LANRoster public documentation with the released v0.2.0 implementation
+- GitHub issue #10
+- Documentation-only repository work
+
+Project:
+- LANRoster
+
+Tool:
+- Muse Code
+
+Effort:
+- Medium
+
+Repository baseline:
+- Branch: docs/issue-10-align-v020-docs
+- Initial working tree: clean
+- ROADMAP.md already merged and explicitly out of edit scope
+
+Provider source:
+- muse usage --json
+- Tier: Muse Code High Usage
+- Source: mint
+
+Capacity before:
+- Provider observation: 2026-11-19T04:53:00.432Z
+- Current window used: 0%
+- Weekly used: 7%
+- Current-window reset: 2026-11-19T09:52:48Z
+- Weekly reset: 2026-11-23T00:00:00Z
+
+Capacity after:
+- Provider observation: 2026-11-19T05:08:16.343Z
+- Current window used: 10%
+- Weekly used: 10%
+- Current-window reset: 2026-11-19T09:52:48Z
+- Weekly reset: 2026-11-23T00:00:00Z
+
+Observed provider movement:
+- Current window: +10 percentage points used
+- Weekly: +3 percentage points used
+
+Elapsed provider-observation interval:
+- Approximately 15 minutes 16 seconds
+
+Outcome:
+- Completed: Yes
+- Files changed: README.md, ARCHITECTURE.md, TODO.md
+- ROADMAP.md changed: No
+- Production files changed: None
+- Tests changed: None
+- Staged, committed, pushed, or PR created: No
+- Human accepted: Pending
+
+Reported validation:
+- 51 unit tests passed
+- Pyrefly: 0 errors
+- git diff --check: passed
+
+Notable behavior:
+- Muse initially referenced issue 0006 / issue 6 during planning.
+- The active task was then explicitly corrected to GitHub issue #10.
+- Muse performed repository-grounded inspection before editing.
+- Muse distinguished current behavior from planned v0.3 and v0.4 work.
+- GitHub issue retrieval timed out in the Muse sandbox, so issue mappings were supplied by the human operator.
+- Final human diff review remains required.
+
+Assessment:
+- Medium effort was sufficient for the bounded documentation reconciliation.
+- The task produced meaningful repository value while consuming measurable current-window and weekly Muse capacity.
+- No provider cost beyond the reported quota percentages was inferred.
+
+
+### Human-directed privacy correction pass
+
+Reason:
+- External review found pre-existing household-derived examples in README.md
+  and ARCHITECTURE.md.
+- Examples included a device-style hostname, private-network addresses,
+  provider-specific gateway guidance, and a local router hostname.
+
+Instruction:
+- Replace the examples with synthetic, provider-neutral documentation values.
+- Preserve subnet, sorting, ARP, resolver, and sequence-diagram meaning.
+- Keep the change bounded to the same three documentation files.
+
+Capacity before correction:
+- Provider observation: 2026-11-19T05:08:16.343Z
+- Current window used: 10%
+- Weekly used: 10%
+
+Capacity after correction:
+- Provider observation: 2026-11-19T05:16:42.391Z
+- Current window used: 13%
+- Weekly used: 12%
+
+Observed correction-pass movement:
+- Current window: +3 percentage points used
+- Weekly: +2 percentage points used
+- Provider-observation interval: approximately 8 minutes 26 seconds
+
+Final combined issue #10 Muse observation:
+- Initial provider observation: 2026-11-19T04:53:00.432Z
+- Final provider observation: 2026-11-19T05:16:42.391Z
+- Current window: 0% to 13% used
+- Weekly window: 7% to 12% used
+- Combined observed movement:
+  - current window: +13 percentage points used
+  - weekly: +5 percentage points used
+- Combined provider-observation interval: approximately 23 minutes 42 seconds
+
+Correction outcome:
+- Completed: Yes
+- Files changed remained:
+  - README.md
+  - ARCHITECTURE.md
+  - TODO.md
+- ROADMAP.md changed: No
+- Production code changed: No
+- Tests changed: No
+- Staged, committed, pushed, or PR created: No
+- Human accepted: Pending
+
+Privacy corrections:
+- Replaced device-like hostname examples with example-host.
+- Replaced household private-network examples with the RFC 5737 TEST-NET-1
+  documentation range.
+- Replaced provider-specific gateway guidance with provider-neutral guidance.
+- Removed the local router hostname example.
+- Final targeted privacy grep was reported clean.
+
+Validation:
+- 51 unit tests passed.
+- Pyrefly reported 0 errors.
+- git diff --check passed.
+- Only the intended three documentation files were modified.
+
+Assessment:
+- Muse Medium completed the primary documentation task and a human-directed
+  correction pass within one current-window segment.
+- The correction pass demonstrates that human privacy review remained useful
+  even after a successful repository-grounded agent pass.
+- No token count, monetary cost, or proportional relationship between quota
+  windows was inferred.
+
+
+## Task observation: LANRoster issue #11 packaging and CI
+
+Task:
+- Add standard Python packaging, reproducible development tooling, rootless CI,
+  and distributable build validation
+- GitHub issue #11
+
+Project:
+- LANRoster
+
+Tool:
+- Muse Code
+
+Model:
+- muse-spark-1.3
+
+Effort:
+- Medium
+
+Provider source:
+- muse usage --json
+- Tier: Muse Code High Usage
+- Source: mint
+
+Capacity before:
+- Provider observation: 2026-11-19T05:28:55.446Z
+- Current window used: 16%
+- Weekly used: 12%
+- Current-window reset: 2026-11-19T09:52:48Z
+- Weekly reset: 2026-11-23T00:00:00Z
+
+Capacity after:
+- Provider observation: 2026-11-19T05:42:26.832Z
+- Current window used: 19%
+- Weekly used: 13%
+- Current-window reset: 2026-11-19T09:52:48Z
+- Weekly reset: 2026-11-23T00:00:00Z
+
+Observed movement:
+- Current window: +3 percentage points used
+- Weekly: +1 percentage point used
+- Provider-observation interval: approximately 13 minutes 31 seconds
+
+Reported outcome:
+- Completed: Yes
+- pyproject.toml added
+- requirements.txt converted to a pyproject-authoritative compatibility shim
+- rootless GitHub Actions CI added
+- package build and wheel smoke validation added
+- Ruff configured with E4, E7, E9, F, and I
+- pyrefly.toml retained
+- ROADMAP.md changed: No
+- Staged, committed, pushed, or PR created: No
+- Human accepted: Pending
+
+Reported validation:
+- 51 tests passed
+- Ruff passed
+- Pyrefly reported 0 errors
+- Wheel and source distribution built
+- Twine checks passed
+- Isolated wheel smoke test passed
+- git diff --check passed
+
+Human-review focus:
+- Ruff auto-fix reportedly reordered imports across approximately 30 production
+  modules and removed two unused test imports.
+- Human review must confirm that every Python change is import-only and
+  behavior-preserving.
+- CI must be inspected to confirm it remains rootless and never starts the
+  LANRoster application.
+- Packaging metadata and package contents require independent review.
+
+Assessment:
+- Spark Medium completed a larger implementation task with lower observed quota
+  movement than the preceding Wonder Medium documentation session.
+- The tasks differ materially, so the observations should not be treated as a
+  controlled model benchmark.
+- No token count, monetary cost, or fixed relationship between quota windows
+  was inferred.
+
+
+## Task observation: LANRoster issue #12 localhost-first binding
+
+Task:
+- Default the LANRoster web server to localhost
+- Require explicit LAN exposure
+- GitHub issue #12
+
+Project:
+- LANRoster
+
+Tool:
+- Antigravity
+
+Reasoning:
+- High
+
+Model:
+- Record the exact session model only if confirmed by the AG interface
+- Provider usage output described the Gemini quota group as Gemini 3.8 Flash
+
+Capacity before:
+- Gemini weekly remaining: 85.1978063583374%
+- Gemini five-hour remaining: 100%
+- Weekly reset: 2026-11-24T23:41:47Z
+- Five-hour reset: 2026-11-19T11:06:56Z
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Capacity after:
+- Gemini weekly remaining: 83.98467898368835%
+- Gemini five-hour remaining: 95.25404572486877%
+- Weekly reset: 2026-11-24T23:41:47Z
+- Five-hour reset: 2026-11-19T11:11:07Z
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Observed movement:
+- Gemini weekly: approximately 1.2131 percentage points consumed
+- Gemini five-hour: approximately 4.7460 percentage points consumed
+- Claude/GPT: no observed consumption
+
+Outcome:
+- Completed: Yes
+- Human accepted: Pending
+- Files changed:
+  - app.py
+  - lan_roster/__main__.py
+  - lan_roster/server_config.py
+  - tests/test_clean_architecture.py
+  - README.md
+  - ARCHITECTURE.md
+- ROADMAP.md changed: No
+- Staged, committed, pushed, or PR created: No
+
+Reported validation:
+- 62 unit tests passed
+- Ruff passed
+- Pyrefly reported 0 errors
+- Wheel and source distribution built
+- Twine checks passed
+- git diff --check passed
+
+Design decision:
+- Default 127.0.0.1:8000
+- Explicit --lan maps to 0.0.0.0:8000
+- No configurable host, port, IPv6 policy, or environment variables in this
+  increment
+- No ADR required
+
+Human-review focus:
+- Verify no double bootstrap in app.py
+- Verify help exits before bootstrap
+- Verify warning text does not present 0.0.0.0 as a browser URL
+- Verify no test opens a live socket or starts a scan
+- Verify only issue #12 files changed
+
+No token count, monetary cost, or explanation for the moving five-hour reset
+timestamp was inferred.
+
+
+## Daily comparison: 2026-11-18 LANRoster work
+
+Three repository tasks produced validated engineering outcomes and observable
+capacity movement.
+
+### Muse Wonder 1.0, Medium
+
+Task:
+- LANRoster issue #10
+- Reconcile README, architecture, and historical backlog with v0.2.0 reality
+
+Observed capacity:
+- Current window used: 0% to 16%
+- Weekly used: 7% to 12%
+
+Outcome:
+- Completed and merged
+- Three documentation files changed
+- Human review required:
+  - correction of stale issue context
+  - privacy sanitization
+  - precision improvements around network reachability
+- 51 tests passed
+- Pyrefly reported 0 errors
+
+### Muse Spark 1.3, Medium
+
+Task:
+- LANRoster issue #11
+- Add Python packaging, Ruff, rootless CI, and distribution validation
+
+Observed capacity:
+- Current window used: 16% to 19%
+- Weekly used: 12% to 13%
+
+Outcome:
+- Completed and merged
+- Packaging and CI added
+- Python 3.10 through 3.14 passed CI
+- Wheel and source distribution passed validation
+- Human review confirmed broad Python changes were import-only
+
+### Antigravity, High reasoning
+
+Task:
+- LANRoster issue #12
+- Default the web server to localhost and require explicit LAN exposure
+
+Observed Gemini capacity:
+- Weekly remaining: 85.1978063583374% to 83.98467898368835%
+- Five-hour remaining: 100% to 95.25404572486877%
+
+Observed Claude/GPT capacity:
+- Weekly remaining: 100% to 100%
+- Five-hour remaining: 100% to 100%
+
+Outcome:
+- Completed and merged
+- Default binding changed to 127.0.0.1
+- Explicit --lan opt-in added for 0.0.0.0 binding
+- 62 tests passed
+- Python 3.10 through 3.14 passed CI
+- Human architecture review narrowed the proposed configuration contract and
+  prevented duplicate bootstrap behavior
+
+### Cross-task observations
+
+- All three capacity-consuming tasks produced merged repository value.
+- Wonder Medium required the most human correction passes of the three tasks.
+- Spark Medium completed a broader implementation task with smaller observed
+  percentage movement than the Wonder documentation task.
+- Antigravity benefited from an explicit human architecture checkpoint before
+  implementation.
+- Human review found a separate pre-existing malformed-HTML defect, now tracked
+  as LANRoster issue #41.
+- The tasks differ substantially, so these observations are not a controlled
+  model-performance benchmark.
+- Provider percentages from different windows and providers are not directly
+  comparable as cost, token volume, or quality.
+- No missing token counts, monetary costs, or model identities were inferred.
+
+### Practical lesson
+
+Capacity should be paired with outcome evidence rather than optimized for raw
+consumption. Today’s strongest observations include:
+
+- tool and model or reasoning selection;
+- provider-reported before and after capacity;
+- repository baseline and branch;
+- validated files and behavior changed;
+- test and CI evidence;
+- human corrections required;
+- final merge and issue closure.
+
+This structure is more useful for future tool-routing analysis than quota
+movement alone.
+
+### Final repository dispositions
+
+- LANRoster issue #10 was merged through PR #38 and closed.
+- LANRoster issue #11 was merged through PR #39 and closed.
+- LANRoster issue #12 was merged through PR #40 and closed.
+- LANRoster issue #41 was created to track the independently discovered,
+  pre-existing malformed HTML artifacts.
+- Human acceptance was completed only after direct diff review, independent
+  local validation, and successful GitHub Actions checks where available.
