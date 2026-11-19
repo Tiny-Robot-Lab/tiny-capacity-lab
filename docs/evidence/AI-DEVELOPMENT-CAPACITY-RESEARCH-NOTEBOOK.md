@@ -2047,3 +2047,199 @@ movement alone.
   pre-existing malformed HTML artifacts.
 - Human acceptance was completed only after direct diff review, independent
   local validation, and successful GitHub Actions checks where available.
+
+## Provider UI observation: Gemini app model transition
+
+Observed:
+- Product surface: Gemini app
+- Account model picker now shows:
+  - Auto: adapts to user needs
+  - Everyday help: Gemini 4 Hydrogen
+  - Deeper analysis: Gemini 4 Neon
+  - Code & complex work: Gemini 4 Carbon, locked
+- Selected model: Gemini 4 Hydrogen
+- Selected thinking level: Medium
+
+Interpretation boundary:
+- This observation confirms the Gemini app lineup visible to the account.
+- It does not confirm the same lineup in Google Antigravity.
+- Google documentation lists Hydrogen and Neon as distributed through
+  Antigravity, with availability dependent on channel and subscription tier.
+- No Antigravity rollout date or entitlement change was inferred.
+
+
+## Capacity checkpoint: cross-repository GitHub setup audit
+
+Tool:
+- Google Antigravity
+
+Session model:
+- Gemini 3.8 Flash
+
+Reasoning:
+- High
+
+## Task observation: cross-repository GitHub governance audit, initial pass
+
+Task:
+- Read-only GitHub setup, security, and governance validation
+- Repositories:
+  - Tiny-Robot-Lab/autonomous-agent-lab
+  - Tiny-Robot-Lab/tiny-capacity-lab
+  - Tiny-Robot-Lab/tinyrobotlab-site
+  - tomhalsan/LANRoster
+
+Tool:
+- Google Antigravity
+
+Session model:
+- Gemini 3.8 Flash
+
+Reasoning:
+- High
+
+Capacity before:
+- Gemini weekly remaining: 83.98467898368835%
+- Gemini five-hour remaining: 95.25404572486877%
+- Weekly reset: 2026-11-24T23:41:47Z
+- Five-hour reset: 2026-11-19T11:11:07Z
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Capacity after initial pass:
+- Gemini weekly remaining: 82.15047717094421%
+- Gemini five-hour remaining: 92.15632677078247%
+- Weekly reset: 2026-11-24T23:41:47Z
+- Five-hour reset: 2026-11-19T11:11:07Z
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Observed movement:
+- Gemini weekly: approximately 1.8342 percentage points consumed
+- Gemini five-hour: approximately 3.0977 percentage points consumed
+- Claude/GPT: no observed consumption
+
+Outcome:
+- Initial audit completed
+- Mutations performed: None
+- Local files changed: None
+- Remote settings changed: None
+- Human accepted: No
+- Correction pass required: Yes
+
+Useful findings:
+- Governance differs materially across the four repositories.
+- LANRoster does not currently require its new CI checks before merge.
+- tiny-capacity-lab lacks default-branch governance.
+- LANRoster CI duplicates feature-branch push and pull-request runs.
+- Repository metadata, branch cleanup, security reporting, and dependency
+  automation have several potential quick wins.
+
+Human-review findings:
+- The audit incorrectly reported SECURITY.md as absent from
+  autonomous-agent-lab.
+- HTTP 403 and HTTP 404 evidence was not classified consistently with the
+  audit's own no-inference rule.
+- non_fast_forward was described imprecisely as fast-forward merge
+  enforcement rather than force-push prevention.
+- LANRoster's exact required check contexts were not established.
+- Full-SHA action pinning was dismissed too strongly despite being an
+  officially recommended supply-chain control.
+- Every claimed missing repository file needs direct contents-endpoint
+  verification.
+
+Assessment:
+- The audit generated useful candidate findings for modest observed capacity
+  movement.
+- Human verification prevented factual errors from becoming settings changes.
+- The initial report is evidence for agent-audit quality as well as repository
+  governance.
+- No token count, monetary cost, or direct relationship between quota windows
+  was inferred.
+
+- LANRoster Dependabot alert count remains access denied.
+- The local CLI/API response requested additional scope, but the observed
+  message does not align cleanly with the current GitHub REST documentation.
+- Do not broaden token permissions solely to complete this audit.
+- Verify through the repository Security UI instead.
+
+
+### Human-directed governance-audit correction pass
+
+Reason:
+- Human verification identified a material false negative: the initial audit
+  reported SECURITY.md as missing from autonomous-agent-lab even though the
+  file exists and GitHub renders the policy.
+- The initial audit also classified HTTP 403 and HTTP 404 inconsistently,
+  described non_fast_forward imprecisely, recommended an unverified generic
+  LANRoster check name, and dismissed full-SHA action pinning too strongly.
+
+Capacity before correction:
+- Gemini weekly remaining: 82.15047717094421%
+- Gemini five-hour remaining: 92.15632677078247%
+- Weekly reset: 2026-11-24T23:41:47Z
+- Five-hour reset: 2026-11-19T11:11:07Z
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Capacity after correction:
+- Gemini weekly remaining: 82.15047717094421%
+- Gemini five-hour remaining: 91.15632772445679%
+- Weekly reset: 2026-11-24T23:41:47Z
+- Five-hour reset: 2026-11-19T11:11:07Z
+- Claude/GPT weekly remaining: 100%
+- Claude/GPT five-hour remaining: 100%
+
+Observed correction-pass movement:
+- Gemini weekly: no observable movement at provider precision
+- Gemini five-hour: approximately 1.0000 percentage point consumed
+- Claude/GPT: no observed movement
+
+Correction outcome:
+- Completed: Yes
+- Local repository mutations: None
+- Remote GitHub mutations: None
+- Human accepted: Yes, with three final interpretive amendments retained
+- Settings changes approved or applied: None
+
+Material corrections:
+- Confirmed autonomous-agent-lab SECURITY.md is present.
+- Confirmed Private Vulnerability Reporting is enabled there.
+- Reclassified LANRoster Dependabot alert access as access denied.
+- Corrected non_fast_forward terminology to force-push prevention.
+- Verified exact LANRoster checks:
+  - test (3.10)
+  - test (3.11)
+  - test (3.12)
+  - test (3.13)
+  - test (3.14)
+  - package
+- Reconciled active PR branches and orphaned branches.
+- Reframed full-SHA action pinning as an official hardening control with an
+  explicit maintainability tradeoff.
+
+Final human amendments:
+- Do not broaden the GitHub token to admin:repo_hook solely to inspect
+  LANRoster Dependabot alerts.
+- Keep read-only PVR validation separate from approved PVR enablement.
+- Treat stale-branch deletion as low-priority hygiene rather than an immediate
+  integrity control.
+
+Combined audit observation:
+- Initial Gemini weekly remaining: 83.98467898368835%
+- Final Gemini weekly remaining: 82.15047717094421%
+- Combined weekly movement: approximately 1.8342 percentage points consumed
+- Initial Gemini five-hour remaining: 95.25404572486877%
+- Final Gemini five-hour remaining: 91.15632772445679%
+- Combined five-hour movement: approximately 4.0977 percentage points consumed
+
+Assessment:
+- The initial audit produced valuable governance findings but was not safe to
+  use directly for configuration changes.
+- Human review caught a material evidence error before any mutation occurred.
+- A focused correction pass converted the report into a decision-ready
+  baseline with modest additional observed capacity.
+- Read-only mode prevented inaccurate findings from becoming repository
+  configuration changes.
+- No token count, monetary cost, or fixed relationship between weekly and
+  five-hour quota movement was inferred.
